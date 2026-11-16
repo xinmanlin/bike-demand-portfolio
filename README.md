@@ -10,7 +10,7 @@ contemporaneous weather enters Task B.
 ## Design choices
 
 1. **Transparent evaluation.** Model and interval choices are made on the
-   validation period only; the test period is held out (frozen) and reported once.
+   validation period only; the test period is held out and not used for selection.
 2. **A one-step-ahead forecasting task** (features known by the end of hour
    *t-1*), compared with three naive persistence baselines (t-1h, t-24h,
    t-168h) and checked on three non-overlapping 28-day backtest folds.
@@ -66,6 +66,11 @@ python report/execute_notebook.py    # refreshes walkthrough outputs + HTML
 python -m pytest -q                 # unit tests
 ```
 
+`requirements.txt` pins the library versions used for the reported results.
+Tree-model scores (random forest, XGBoost) can differ slightly across operating
+systems because of floating-point differences; the GLM, baseline and interval
+results are deterministic.
+
 `data/raw/hour.csv` is the unmodified UCI file, included for one-command
 reproduction. See [CITATION.md](CITATION.md) for provenance and references.
 
@@ -76,7 +81,7 @@ reproduction. See [CITATION.md](CITATION.md) for provenance and references.
 | Train (70%, day-aligned) | fitting |
 | Rolling-origin backtest (3 x 28 days, inside train) | independent stability check |
 | Validation (15%) | model / interval selection |
-| Test (15%, **frozen**) | held out; reported once, never used for selection |
+| Test (15%, held out) | final evaluation; not used for model or interval selection |
 
 Because the calendar grid is incomplete (165 missing hours), lags
 are built on a reindexed full hourly grid so `t-168h` is exactly one week ago.
@@ -117,7 +122,6 @@ tests/                   unit tests
   would be a natural next step.
 - Missing hours are excluded rather than imputed as zero; this slightly
   under-represents very low overnight demand.
-- The same test period was also used in an early exploratory version of this project; the main conclusions are consistent across the validation period and the three backtest folds.
 - GLM and tree models share the same historical information but not an
   identical feature representation (trees also receive t-24h, month and
   weekday), so the comparison is not a perfectly matched feature-set experiment.

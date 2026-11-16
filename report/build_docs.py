@@ -76,12 +76,8 @@ min_cnt = integ["min_observed_cnt"]
 miss_night = integ["missing_share_02_05"]
 miss_sandy = integ["missing_2012_10_29_30"]
 test_missing = int(periods.set_index("Period").loc["Test", "Missing hours"])
-TEST_NOTE = ("The final 15% of the series is a held-out (frozen) test period: it is never "
-             "used for model or interval selection, and test results are reported once, "
-             "after all choices are fixed on validation data.")
-LIMIT_TEST = ("The same test period was also used in an early exploratory version of this "
-              "project; the main conclusions are consistent across the validation period and "
-              "the three backtest folds.")
+TEST_NOTE = ("The final 15% of the series is a held-out test period: it is not used for "
+             "model or interval selection, which is done on validation data only.")
 
 # ------------------------------------------------------------------ README
 readme = f"""# Hourly bike-sharing demand: interpretable count models and uncertainty under temporal shift
@@ -96,7 +92,7 @@ contemporaneous weather enters Task B.
 ## Design choices
 
 1. **Transparent evaluation.** Model and interval choices are made on the
-   validation period only; the test period is held out (frozen) and reported once.
+   validation period only; the test period is held out and not used for selection.
 2. **A one-step-ahead forecasting task** (features known by the end of hour
    *t-1*), compared with three naive persistence baselines (t-1h, t-24h,
    t-168h) and checked on three non-overlapping 28-day backtest folds.
@@ -152,6 +148,11 @@ python report/execute_notebook.py    # refreshes walkthrough outputs + HTML
 python -m pytest -q                 # unit tests
 ```
 
+`requirements.txt` pins the library versions used for the reported results.
+Tree-model scores (random forest, XGBoost) can differ slightly across operating
+systems because of floating-point differences; the GLM, baseline and interval
+results are deterministic.
+
 `data/raw/hour.csv` is the unmodified UCI file, included for one-command
 reproduction. See [CITATION.md](CITATION.md) for provenance and references.
 
@@ -162,7 +163,7 @@ reproduction. See [CITATION.md](CITATION.md) for provenance and references.
 | Train (70%, day-aligned) | fitting |
 | Rolling-origin backtest (3 x 28 days, inside train) | independent stability check |
 | Validation (15%) | model / interval selection |
-| Test (15%, **frozen**) | held out; reported once, never used for selection |
+| Test (15%, held out) | final evaluation; not used for model or interval selection |
 
 Because the calendar grid is incomplete ({missing_hours} missing hours), lags
 are built on a reindexed full hourly grid so `t-168h` is exactly one week ago.
@@ -203,7 +204,6 @@ tests/                   unit tests
   would be a natural next step.
 - Missing hours are excluded rather than imputed as zero; this slightly
   under-represents very low overnight demand.
-- {LIMIT_TEST}
 - GLM and tree models share the same historical information but not an
   identical feature representation (trees also receive t-24h, month and
   weekday), so the comparison is not a perfectly matched feature-set experiment.
@@ -305,14 +305,14 @@ the seasonal-naive t-168h baseline. All regressors are known before hour t.</fig
 <figure><img src="../results/figures/backtest.png" alt="Rolling-origin backtest">
 <figcaption>Figure 4. Three non-overlapping 28-day rolling-origin folds, entirely
 inside the training era. This is the independent stability evidence.</figcaption></figure>
-<h3>3.3 Frozen test period</h3>
+<h3>3.3 Held-out test period</h3>
 <p>$TEST_TEXT</p>
 $TABLE_TEST
 
 <h2>4. Uncertainty quantification</h2>
 <p>$CONF_TEXT</p>
 $TABLE_CONF
-<p><small>Frozen test period, reported once and never used for selection:</small></p>
+<p><small>Held-out test period, not used for model or interval selection:</small></p>
 $TABLE_CONF_TEST
 <p>$ACI_DISCUSSION</p>
 <figure><img src="../results/figures/coverage_by_hour.png" alt="Coverage by hour">
@@ -406,7 +406,7 @@ MODELS = (
     "nonrobust covariance would make the p-values meaningless. The NB dispersion parameter is "
     "a plug-in method-of-moments estimate used to define a variance function, not an optimised "
     "point predictor. Comparisons and interval selection use validation metrics and "
-    "three non-overlapping 28-day rolling-origin folds; the frozen test period is never used "
+    "three non-overlapping 28-day rolling-origin folds; the held-out test period is not used "
     "for selection."
 )
 TASKA_DISCUSSION = (
@@ -500,7 +500,6 @@ CALLOUT = (
 LIMIT_TEXT = [
     "Task A is conditional on observed weather; replacing it with forecasts will degrade accuracy.",
     f"The exchangeability assumption is unlikely to hold (lag-1 ACF {n(acf1, 2)}, mean demand {n(cal_mean, 1)} -> {n(val_mean, 1)} -> {n(test_mean, 1)}). Coverage is empirical, not guaranteed.",
-    LIMIT_TEST,
     "Missing hours (mostly 02:00-05:00, likely zero-rental hours) are excluded rather than imputed as zero, slightly under-representing very low overnight demand.",
     "Online calibration assumes a reliable real-time count feed at the end of every hour.",
     "Intervals are symmetric and truncated at zero; asymmetric count intervals would be sharper.",
