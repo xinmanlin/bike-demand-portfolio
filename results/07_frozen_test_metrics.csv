@@ -1,0 +1,9 @@
+Model,MAE,RMSE,Poisson deviance
+Poisson GLM (forecasting),41.79,66.87,16.54
+Random forest (lag features),54.26,85.72,25.74
+XGBoost (lag features),55.21,84.86,25.11
+Seasonal naive (t-168h),66.48,112.75,48.49
+Naive (t-24h),77.77,129.65,64.83
+Naive (t-1h),81.26,125.43,49.96
+Hour x workingday mean,103.21,148.91,73.72
+Global mean,168.89,227.1,224.19

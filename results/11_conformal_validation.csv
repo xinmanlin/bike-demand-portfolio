@@ -1,0 +1,7 @@
+Method,Coverage,Average width,Winkler score,Coverage below target,Peak-hour coverage,Off-peak coverage,Worst-hour coverage
+Split / absolute,0.8953,188.6532,326.7285,True,0.7798,0.9337,0.6422
+Split / Poisson-scaled,0.9278,182.8803,278.7242,False,0.8853,0.9419,0.8165
+Split / NB-scaled,0.9587,273.5851,316.7289,False,0.9664,0.9562,0.9083
+Rolling / NB-scaled,0.9025,207.8333,283.0965,False,0.9266,0.8945,0.7615
+ACI / NB-scaled,0.9014,203.5833,279.0605,False,0.9281,0.8925,0.7798
+Mondrian / NB-scaled,0.956,275.2902,318.3281,False,0.9648,0.9531,0.8899

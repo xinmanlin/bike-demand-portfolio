@@ -1,0 +1,674 @@
+{
+  "integrity": {
+    "min_observed_cnt": 1,
+    "missing_share_00_06": 0.6666666666666666,
+    "missing_share_02_05": 0.593939393939394,
+    "missing_2012_10_29_30": 36,
+    "n_grid_hours": 17544,
+    "n_observed_hours": 17379,
+    "n_missing_hours": 165,
+    "start": "2011-01-01 00:00:00",
+    "end": "2012-12-31 23:00:00",
+    "n_rows_with_full_lags": 17212
+  },
+  "split": {
+    "train_end": "2012-05-27 00:00:00",
+    "val_end": "2012-09-13 00:00:00"
+  },
+  "periods": [
+    {
+      "Period": "Train",
+      "Start": "2011-01-01 00:00:00",
+      "End": "2012-05-26 23:00:00",
+      "N hours": 12163,
+      "Mean cnt": 159.9,
+      "Missing hours": 125
+    },
+    {
+      "Period": "Validation",
+      "Start": "2012-05-27 00:00:00",
+      "End": "2012-09-12 23:00:00",
+      "N hours": 2616,
+      "Mean cnt": 281.6,
+      "Missing hours": 0
+    },
+    {
+      "Period": "Test",
+      "Start": "2012-09-13 00:00:00",
+      "End": "2012-12-31 23:00:00",
+      "N hours": 2600,
+      "Mean cnt": 234.9,
+      "Missing hours": 40
+    }
+  ],
+  "taskA": {
+    "dispersion": 11.563641809726578,
+    "nb_alpha": 0.04475229698606163,
+    "quadratic": {
+      "linear_coef": 4.051866254249431,
+      "quadratic_coef": -2.641797112318025,
+      "peak_temp": 0.7668768800141036,
+      "marginal_at_0_5": 1.4100691419314058,
+      "marginal_at_0_8": -0.17500912545940928,
+      "multiplier_0_5_to_0_7": 1.192845875284504
+    },
+    "coefficients": [
+      {
+        "Term": "temp",
+        "coef": 4.051866254249431,
+        "quasi SE": 0.08598356976066505,
+        "quasi z": 47.1237268413929,
+        "exp(coef) (single terms only)": "n/a (joint quadratic pair)"
+      },
+      {
+        "Term": "I(temp ** 2)",
+        "coef": -2.641797112318025,
+        "quasi SE": 0.08117600173333335,
+        "quasi z": -32.544065436931,
+        "exp(coef) (single terms only)": "n/a (joint quadratic pair)"
+      },
+      {
+        "Term": "hum",
+        "coef": -0.23314979182571335,
+        "quasi SE": 0.016599409275347275,
+        "quasi z": -14.045668008919892,
+        "exp(coef) (single terms only)": 0.792
+      },
+      {
+        "Term": "windspeed",
+        "coef": -0.29659150010899643,
+        "quasi SE": 0.02078447838408343,
+        "quasi z": -14.269855352065202,
+        "exp(coef) (single terms only)": 0.743
+      },
+      {
+        "Term": "C(yr)[T.1]",
+        "coef": 0.5147386818363707,
+        "quasi SE": 0.006520117730481589,
+        "quasi z": 78.94622507044073,
+        "exp(coef) (single terms only)": 1.673
+      },
+      {
+        "Term": "C(weather)[T.2]",
+        "coef": -0.06496615777166546,
+        "quasi SE": 0.006370067243921713,
+        "quasi z": -10.198661220359307,
+        "exp(coef) (single terms only)": 0.937
+      },
+      {
+        "Term": "C(weather)[T.3]",
+        "coef": -0.5431582693857203,
+        "quasi SE": 0.012224289569434159,
+        "quasi z": -44.43270639987483,
+        "exp(coef) (single terms only)": 0.581
+      },
+      {
+        "Term": "holiday",
+        "coef": -0.1368362898120527,
+        "quasi SE": 0.0169471809978084,
+        "quasi z": -8.074280308314892,
+        "exp(coef) (single terms only)": 0.872
+      }
+    ],
+    "validation": [
+      {
+        "Model": "Poisson + yr:month",
+        "MAE": 47.48642223764512,
+        "RMSE": 74.05233045766597,
+        "Poisson deviance": 15.060233084733557
+      },
+      {
+        "Model": "Poisson GLM (conditional)",
+        "MAE": 53.13743258142764,
+        "RMSE": 82.86914467368463,
+        "Poisson deviance": 16.66672616245528
+      },
+      {
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 57.61735474006116,
+        "RMSE": 97.91628180027168,
+        "Poisson deviance": 32.44951812355006
+      },
+      {
+        "Model": "NB GLM (conditional)",
+        "MAE": 61.654272450260756,
+        "RMSE": 96.90055811026262,
+        "Poisson deviance": 20.636622205567612
+      },
+      {
+        "Model": "Naive (t-24h)",
+        "MAE": 81.91896024464832,
+        "RMSE": 137.23939161778878,
+        "Poisson deviance": 65.77672475842387
+      },
+      {
+        "Model": "Naive (t-1h)",
+        "MAE": 92.22209480122324,
+        "RMSE": 135.39226479741183,
+        "Poisson deviance": 57.870666962264565
+      },
+      {
+        "Model": "Hour x workingday mean",
+        "MAE": 124.79219153107177,
+        "RMSE": 165.9308702358576,
+        "Poisson deviance": 89.08519626978784
+      },
+      {
+        "Model": "Global mean",
+        "MAE": 193.72861203512215,
+        "RMSE": 253.57681253625253,
+        "Poisson deviance": 262.73775047829827
+      }
+    ],
+    "interaction_aic": 18357.862603791058,
+    "baseline_aic": 18209.3098934215,
+    "bias": {
+      "mean_bias": 31.351973761687464,
+      "median_actual_over_pred": 0.8904424179515772
+    }
+  },
+  "taskB": {
+    "dispersion": 12.651224067998296,
+    "validation": [
+      {
+        "Model": "Poisson GLM (forecasting)",
+        "MAE": 42.91139693238661,
+        "RMSE": 69.90603859106419,
+        "Poisson deviance": 13.674129907778374
+      },
+      {
+        "Model": "Random forest (lag features)",
+        "MAE": 56.53463714182787,
+        "RMSE": 90.94755383968531,
+        "Poisson deviance": 24.568580059316837
+      },
+      {
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 57.61735474006116,
+        "RMSE": 97.91628180027168,
+        "Poisson deviance": 32.44951812355006
+      },
+      {
+        "Model": "XGBoost (lag features)",
+        "MAE": 58.68015018351581,
+        "RMSE": 91.4044478759956,
+        "Poisson deviance": 24.253491906015874
+      },
+      {
+        "Model": "Naive (t-24h)",
+        "MAE": 81.91896024464832,
+        "RMSE": 137.23939161778878,
+        "Poisson deviance": 65.77672475842387
+      },
+      {
+        "Model": "Naive (t-1h)",
+        "MAE": 92.22209480122324,
+        "RMSE": 135.39226479741183,
+        "Poisson deviance": 57.870666962264565
+      },
+      {
+        "Model": "Hour x workingday mean",
+        "MAE": 124.38760035403111,
+        "RMSE": 165.44644858585858,
+        "Poisson deviance": 88.41839783056174
+      },
+      {
+        "Model": "Global mean",
+        "MAE": 193.39603485241327,
+        "RMSE": 253.0669051290965,
+        "Poisson deviance": 261.1522022104221
+      }
+    ],
+    "backtest_folds": [
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Poisson GLM (forecasting)",
+        "MAE": 42.24541176957673,
+        "RMSE": 74.16744358596439
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "XGBoost (lag features)",
+        "MAE": 55.877150027337905,
+        "RMSE": 93.88137439588702
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 67.91167664670658,
+        "RMSE": 117.38510116726017
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Naive (t-24h)",
+        "MAE": 74.7994011976048,
+        "RMSE": 128.41004913386988
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Naive (t-1h)",
+        "MAE": 81.40868263473054,
+        "RMSE": 119.25819245261881
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Hour x workingday mean",
+        "MAE": 89.31758750718933,
+        "RMSE": 133.55144822535996
+      },
+      {
+        "Fold": "fold_1",
+        "Train until": "2012-03-04",
+        "Model": "Global mean",
+        "MAE": 159.12351908261266,
+        "RMSE": 214.03372345358207
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Poisson GLM (forecasting)",
+        "MAE": 48.04002141667803,
+        "RMSE": 79.2704344225297
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "XGBoost (lag features)",
+        "MAE": 60.73186277269243,
+        "RMSE": 91.84499029867546
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 62.7012012012012,
+        "RMSE": 104.63563980364012
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Naive (t-1h)",
+        "MAE": 82.26876876876877,
+        "RMSE": 121.30967619088568
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Naive (t-24h)",
+        "MAE": 84.46396396396396,
+        "RMSE": 137.13592805228964
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Hour x workingday mean",
+        "MAE": 106.34031629599761,
+        "RMSE": 150.44994255632966
+      },
+      {
+        "Fold": "fold_2",
+        "Train until": "2012-04-01",
+        "Model": "Global mean",
+        "MAE": 175.8335191869394,
+        "RMSE": 229.22305830246316
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Poisson GLM (forecasting)",
+        "MAE": 43.323292218124955,
+        "RMSE": 73.85873956917204
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "XGBoost (lag features)",
+        "MAE": 55.62787640449547,
+        "RMSE": 90.34434480454081
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 63.37202380952381,
+        "RMSE": 114.70640576624099
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Naive (t-24h)",
+        "MAE": 83.74107142857143,
+        "RMSE": 137.2658178932569
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Naive (t-1h)",
+        "MAE": 85.47619047619048,
+        "RMSE": 123.71223570005014
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Hour x workingday mean",
+        "MAE": 113.9270496082114,
+        "RMSE": 152.96050946835672
+      },
+      {
+        "Fold": "fold_3",
+        "Train until": "2012-04-29",
+        "Model": "Global mean",
+        "MAE": 181.3802686397866,
+        "RMSE": 236.1102250598287
+      }
+    ],
+    "backtest_summary": [
+      {
+        "Model": "Poisson GLM (forecasting)",
+        "mean": 44.54,
+        "std": 3.08,
+        "min": 42.25,
+        "max": 48.04
+      },
+      {
+        "Model": "XGBoost (lag features)",
+        "mean": 57.41,
+        "std": 2.88,
+        "min": 55.63,
+        "max": 60.73
+      },
+      {
+        "Model": "Seasonal naive (t-168h)",
+        "mean": 64.66,
+        "std": 2.83,
+        "min": 62.7,
+        "max": 67.91
+      },
+      {
+        "Model": "Naive (t-24h)",
+        "mean": 81.0,
+        "std": 5.38,
+        "min": 74.8,
+        "max": 84.46
+      },
+      {
+        "Model": "Naive (t-1h)",
+        "mean": 83.05,
+        "std": 2.14,
+        "min": 81.41,
+        "max": 85.48
+      },
+      {
+        "Model": "Hour x workingday mean",
+        "mean": 103.19,
+        "std": 12.6,
+        "min": 89.32,
+        "max": 113.93
+      },
+      {
+        "Model": "Global mean",
+        "mean": 172.11,
+        "std": 11.59,
+        "min": 159.12,
+        "max": 181.38
+      }
+    ],
+    "frozen_test": [
+      {
+        "Model": "Poisson GLM (forecasting)",
+        "MAE": 41.786537246440695,
+        "RMSE": 66.87211338935828,
+        "Poisson deviance": 16.54480536354972
+      },
+      {
+        "Model": "Random forest (lag features)",
+        "MAE": 54.25910913647828,
+        "RMSE": 85.72180996714455,
+        "Poisson deviance": 25.735084110894096
+      },
+      {
+        "Model": "XGBoost (lag features)",
+        "MAE": 55.21325741085289,
+        "RMSE": 84.86366991261899,
+        "Poisson deviance": 25.105477227633695
+      },
+      {
+        "Model": "Seasonal naive (t-168h)",
+        "MAE": 66.47572048953809,
+        "RMSE": 112.75477270722948,
+        "Poisson deviance": 48.487229863607574
+      },
+      {
+        "Model": "Naive (t-24h)",
+        "MAE": 77.76628503750493,
+        "RMSE": 129.6510272499072,
+        "Poisson deviance": 64.83146649887814
+      },
+      {
+        "Model": "Naive (t-1h)",
+        "MAE": 81.25819186735097,
+        "RMSE": 125.42665441437833,
+        "Poisson deviance": 49.955601975387374
+      },
+      {
+        "Model": "Hour x workingday mean",
+        "MAE": 103.20588444410251,
+        "RMSE": 148.91313656646523,
+        "Poisson deviance": 73.71684012771293
+      },
+      {
+        "Model": "Global mean",
+        "MAE": 168.8858041246846,
+        "RMSE": 227.09666258727498,
+        "Poisson deviance": 224.19243411588639
+      }
+    ]
+  },
+  "conformal": {
+    "alpha_nb": 0.053041827978501786,
+    "calibration": {
+      "start": "2012-02-15 00:00:00",
+      "end": "2012-05-26 23:00:00",
+      "n": 2430,
+      "mean_cnt": 229.42263374485597
+    },
+    "validation_mean_cnt": 281.552752293578,
+    "test_mean_cnt": 236.91669956573233,
+    "acf_lag1": 0.7325165804482863,
+    "acf_lag24": 0.011328411742198662,
+    "chosen_method": "Split / Poisson-scaled",
+    "validation": [
+      {
+        "Method": "Split / absolute",
+        "Coverage": 0.8952599388379205,
+        "Average width": 188.6532219115147,
+        "Winkler score": 326.72850119361595,
+        "Coverage below target": true,
+        "Peak-hour coverage": 0.7798165137614679,
+        "Off-peak coverage": 0.9337410805300713,
+        "Worst-hour coverage": 0.6422018348623854
+      },
+      {
+        "Method": "Split / Poisson-scaled",
+        "Coverage": 0.9277522935779816,
+        "Average width": 182.88031317902832,
+        "Winkler score": 278.72418731515603,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.8853211009174312,
+        "Off-peak coverage": 0.9418960244648318,
+        "Worst-hour coverage": 0.8165137614678899
+      },
+      {
+        "Method": "Split / NB-scaled",
+        "Coverage": 0.9587155963302753,
+        "Average width": 273.585138794146,
+        "Winkler score": 316.7289238111443,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.9663608562691132,
+        "Off-peak coverage": 0.9561671763506626,
+        "Worst-hour coverage": 0.908256880733945
+      },
+      {
+        "Method": "Rolling / NB-scaled",
+        "Coverage": 0.9025229357798165,
+        "Average width": 207.83329923470376,
+        "Winkler score": 283.09652720065077,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.926605504587156,
+        "Off-peak coverage": 0.8944954128440367,
+        "Worst-hour coverage": 0.7614678899082569
+      },
+      {
+        "Method": "ACI / NB-scaled",
+        "Coverage": 0.9013761467889908,
+        "Average width": 203.583285430479,
+        "Winkler score": 279.06054125359776,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.9281345565749235,
+        "Off-peak coverage": 0.8924566768603466,
+        "Worst-hour coverage": 0.7798165137614679
+      },
+      {
+        "Method": "Mondrian / NB-scaled",
+        "Coverage": 0.956039755351682,
+        "Average width": 275.2901760426756,
+        "Winkler score": 318.32812206827316,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.9648318042813455,
+        "Off-peak coverage": 0.9531090723751274,
+        "Worst-hour coverage": 0.8899082568807339
+      }
+    ],
+    "frozen_test": [
+      {
+        "Method": "Split / absolute",
+        "Coverage": 0.8957757599684169,
+        "Average width": 186.0312412206845,
+        "Winkler score": 314.1776646832384,
+        "Coverage below target": true,
+        "Peak-hour coverage": 0.7704402515723271,
+        "Off-peak coverage": 0.9377965208223511,
+        "Worst-hour coverage": 0.6635514018691588
+      },
+      {
+        "Method": "Split / Poisson-scaled",
+        "Coverage": 0.8941966048164233,
+        "Average width": 166.05293455806463,
+        "Winkler score": 280.54558936781376,
+        "Coverage below target": true,
+        "Peak-hour coverage": 0.8270440251572327,
+        "Off-peak coverage": 0.9167105956773853,
+        "Worst-hour coverage": 0.7757009345794392
+      },
+      {
+        "Method": "Split / NB-scaled",
+        "Coverage": 0.9020923805763916,
+        "Average width": 232.61254662427945,
+        "Winkler score": 300.4882186534611,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.8946540880503144,
+        "Off-peak coverage": 0.9045861887190301,
+        "Worst-hour coverage": 0.8571428571428571
+      },
+      {
+        "Method": "Rolling / NB-scaled",
+        "Coverage": 0.8776154757204896,
+        "Average width": 209.0253820361822,
+        "Winkler score": 292.68086918525063,
+        "Coverage below target": true,
+        "Peak-hour coverage": 0.8757861635220126,
+        "Off-peak coverage": 0.8782287822878229,
+        "Worst-hour coverage": 0.8095238095238095
+      },
+      {
+        "Method": "ACI / NB-scaled",
+        "Coverage": 0.8961705487564153,
+        "Average width": 209.5222022765181,
+        "Winkler score": 273.532440151443,
+        "Coverage below target": true,
+        "Peak-hour coverage": 0.8977987421383647,
+        "Off-peak coverage": 0.8956246705324196,
+        "Worst-hour coverage": 0.822429906542056
+      },
+      {
+        "Method": "Mondrian / NB-scaled",
+        "Coverage": 0.9009080142123964,
+        "Average width": 234.17412494035287,
+        "Winkler score": 302.3411476570449,
+        "Coverage below target": false,
+        "Peak-hour coverage": 0.8867924528301887,
+        "Off-peak coverage": 0.9056404849762784,
+        "Worst-hour coverage": 0.8504672897196262
+      }
+    ]
+  },
+  "diagnostics": {
+    "overall_mean_bias": 5.088469045715312,
+    "median_actual_over_pred": 0.9886354525854251,
+    "bias_by_temperature": [
+      {
+        "temp_bin": "(-0.001, 0.5]",
+        "Median_ratio": "1.032",
+        "Mean_bias": "-13.532",
+        "N": "37"
+      },
+      {
+        "temp_bin": "(0.5, 0.6]",
+        "Median_ratio": "0.95",
+        "Mean_bias": "9.763",
+        "N": "294"
+      },
+      {
+        "temp_bin": "(0.6, 0.7]",
+        "Median_ratio": "0.995",
+        "Mean_bias": "4.844",
+        "N": "1044"
+      },
+      {
+        "temp_bin": "(0.7, 0.8]",
+        "Median_ratio": "1.016",
+        "Mean_bias": "-6.194",
+        "N": "872"
+      },
+      {
+        "temp_bin": "(0.8, 1.0]",
+        "Median_ratio": "0.916",
+        "Mean_bias": "30.583",
+        "N": "369"
+      }
+    ],
+    "validation_feature_variation": [
+      {
+        "Column": "yr",
+        "Distinct values in validation": 1,
+        "Share of rows at modal value": 1.0
+      },
+      {
+        "Column": "season",
+        "Distinct values in validation": 2,
+        "Share of rows at modal value": 0.7706422018348624
+      },
+      {
+        "Column": "mnth",
+        "Distinct values in validation": 5,
+        "Share of rows at modal value": 0.28440366972477066
+      }
+    ]
+  },
+  "figures": [
+    "backtest.png",
+    "bias_and_dependence.png",
+    "coverage_by_hour.png",
+    "demand_profile.png",
+    "forecast_week.png",
+    "intervals_validation.png",
+    "temp_effect.png",
+    "width_vs_prediction.png"
+  ]
+}

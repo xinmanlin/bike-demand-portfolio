@@ -1,0 +1,22 @@
+Fold,Train until,Model,MAE,RMSE
+fold_1,2012-03-04,Poisson GLM (forecasting),42.25,74.17
+fold_1,2012-03-04,XGBoost (lag features),55.88,93.88
+fold_1,2012-03-04,Seasonal naive (t-168h),67.91,117.39
+fold_1,2012-03-04,Naive (t-24h),74.8,128.41
+fold_1,2012-03-04,Naive (t-1h),81.41,119.26
+fold_1,2012-03-04,Hour x workingday mean,89.32,133.55
+fold_1,2012-03-04,Global mean,159.12,214.03
+fold_2,2012-04-01,Poisson GLM (forecasting),48.04,79.27
+fold_2,2012-04-01,XGBoost (lag features),60.73,91.84
+fold_2,2012-04-01,Seasonal naive (t-168h),62.7,104.64
+fold_2,2012-04-01,Naive (t-1h),82.27,121.31
+fold_2,2012-04-01,Naive (t-24h),84.46,137.14
+fold_2,2012-04-01,Hour x workingday mean,106.34,150.45
+fold_2,2012-04-01,Global mean,175.83,229.22
+fold_3,2012-04-29,Poisson GLM (forecasting),43.32,73.86
+fold_3,2012-04-29,XGBoost (lag features),55.63,90.34
+fold_3,2012-04-29,Seasonal naive (t-168h),63.37,114.71
+fold_3,2012-04-29,Naive (t-24h),83.74,137.27
+fold_3,2012-04-29,Naive (t-1h),85.48,123.71
+fold_3,2012-04-29,Hour x workingday mean,113.93,152.96
+fold_3,2012-04-29,Global mean,181.38,236.11

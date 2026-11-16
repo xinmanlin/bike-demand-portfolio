@@ -1,0 +1,8 @@
+Model,mean,std,min,max
+Poisson GLM (forecasting),44.54,3.08,42.25,48.04
+XGBoost (lag features),57.41,2.88,55.63,60.73
+Seasonal naive (t-168h),64.66,2.83,62.7,67.91
+Naive (t-24h),81.0,5.38,74.8,84.46
+Naive (t-1h),83.05,2.14,81.41,85.48
+Hour x workingday mean,103.19,12.6,89.32,113.93
+Global mean,172.11,11.59,159.12,181.38

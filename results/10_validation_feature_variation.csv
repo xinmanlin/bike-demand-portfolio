@@ -1,0 +1,4 @@
+Column,Distinct values in validation,Share of rows at modal value
+yr,1,1.0
+season,2,0.771
+mnth,5,0.284

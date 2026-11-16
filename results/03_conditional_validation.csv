@@ -1,0 +1,9 @@
+Model,MAE,RMSE,Poisson deviance
+Poisson + yr:month,47.49,74.05,15.06
+Poisson GLM (conditional),53.14,82.87,16.67
+Seasonal naive (t-168h),57.62,97.92,32.45
+NB GLM (conditional),61.65,96.9,20.64
+Naive (t-24h),81.92,137.24,65.78
+Naive (t-1h),92.22,135.39,57.87
+Hour x workingday mean,124.79,165.93,89.09
+Global mean,193.73,253.58,262.74
